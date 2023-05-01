@@ -12,4 +12,5 @@
 
 <resources>
     <string name="ttivi_template_app_name">IVI Template App</string>
+    <string name="restaurant_finder_menuitem_name">Restaurant Finder</string>
 </resources>

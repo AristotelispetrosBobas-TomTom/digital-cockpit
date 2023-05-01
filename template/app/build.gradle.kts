@@ -19,6 +19,9 @@ import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviAppsui
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.configurators.IviDefaultsGroupsSelectionConfigurator
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendCreationPolicy
+import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
 
 plugins {
     id("com.tomtom.ivi.product.defaults.core")
@@ -31,6 +34,13 @@ ivi {
             create(IviInstanceIdentifier.default) {
                 applyGroups {
                     selectGroups()
+                }
+                frontends {
+                    add(restaurantFinderFrontend)
+                }
+
+                menuItems {
+                    addLast(restaurantFinderMenuItem to restaurantFinderFrontend)
                 }
             }
         }
@@ -100,4 +110,16 @@ dependencies {
     implementation(libraries.iviPlatformFrameworkApiProductDebugPermissions)
     implementation(libraries.iviPlatformFrameworkApiProductDefaultActivity)
     implementation(libraries.iviPlatformFrameworkApiProductDefaultApplication)
+}
+
+val restaurantFinderFrontend by extra {
+    FrontendConfig(
+        frontendBuilderName = "RestaurantFinderFrontendBuilder",
+        implementationModule = ExampleModuleReference("template_app"),
+        creationPolicy = FrontendCreationPolicy.CREATE_ON_DEMAND
+    )
+}
+
+val restaurantFinderMenuItem by extra {
+    restaurantFinderFrontend.toMenuItem("restaurantFinderMenuItem")
 }
