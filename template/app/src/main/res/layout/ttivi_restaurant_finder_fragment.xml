@@ -17,7 +17,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.ivi.template.app.frontend.RestaurantFinderListViewModel" />
+            type="com.example.ivi.template.app.frontend.RestaurantFinderViewModel" />
     </data>
 
     <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
