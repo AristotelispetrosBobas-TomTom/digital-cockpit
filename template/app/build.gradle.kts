@@ -25,9 +25,18 @@ import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServic
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.configurators.IviDefaultsGroupsSelectionConfigurator
 import com.tomtom.ivi.platform.gradle.api.defaults.config.privacySettingsServiceHost
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendCreationPolicy
-import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendCreationPolicy.CREATE_ON_DEMAND
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
+
+plugins {
+    id("com.tomtom.ivi.product.defaults.core")
+}
+
+private val module = ModuleReference(
+    "com.example.ivi",
+    "template_app",
+    "com.example.ivi.template.app"
+)
 
 public val configurePrivacySettingsServiceHost: IviServiceHostConfig =
     IviServiceHostConfig(
@@ -47,9 +56,6 @@ public val configurePrivacySettingsServiceHost: IviServiceHostConfig =
         )
     )
 
-plugins {
-    id("com.tomtom.ivi.product.defaults.core")
-}
 
 ivi {
     application {
@@ -59,11 +65,18 @@ ivi {
                 applyGroups {
                     selectGroups()
                 }
+                val restaurantFinderFrontend = FrontendConfig(
+                    frontendBuilderName = "RestaurantFinderFrontendBuilder",
+                    implementationModule = module,
+                    subPackageName = "frontend",
+                    creationPolicy = CREATE_ON_DEMAND
+                )
                 frontends {
                     add(restaurantFinderFrontend)
                 }
 
                 menuItems {
+                    val restaurantFinderMenuItem = restaurantFinderFrontend.toMenuItem("restaurantFinderMenuItem")
                     addLast(restaurantFinderMenuItem to restaurantFinderFrontend)
                 }
             }
@@ -88,18 +101,13 @@ ivi {
 fun IviDefaultsGroupsSelectionConfigurator.selectGroups() {
     includeDefaultPlatformGroups()
     include(
-        IviAppsuite.appStoreGroup,
-        IviAppsuite.bluetoothGroup,
         IviAppsuite.communicationsGroup,
-        IviAppsuite.companionAppGroup,
         IviAppsuite.hvacGroup,
         IviAppsuite.mediaGroup,
         IviAppsuite.messagingGroup,
         IviAppsuite.navAppComponentsGroup,
         IviAppsuite.navigationGroup,
         IviAppsuite.systemStatusGroup,
-        IviAppsuite.userProfilesGroup,
-        IviAppsuite.vehicleSettingsGroup
     )
 }
 
@@ -133,20 +141,10 @@ android {
 
 dependencies {
     implementation(iviDependencies.tomtomAutomotiveAndroidCar)
+    implementation(iviDependencies.tomtomToolsApiUicontrols)
+
     implementation(libraries.iviPlatformThemingApiCommonAttributes)
     implementation(libraries.iviPlatformFrameworkApiProductDebugPermissions)
     implementation(libraries.iviPlatformFrameworkApiProductDefaultActivity)
     implementation(libraries.iviPlatformFrameworkApiProductDefaultApplication)
-}
-
-val restaurantFinderFrontend by extra {
-    FrontendConfig(
-        frontendBuilderName = "RestaurantFinderFrontendBuilder",
-        implementationModule = ExampleModuleReference("template_app"),
-        creationPolicy = FrontendCreationPolicy.CREATE_ON_DEMAND
-    )
-}
-
-val restaurantFinderMenuItem by extra {
-    restaurantFinderFrontend.toMenuItem("restaurantFinderMenuItem")
 }
