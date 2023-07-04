@@ -18,7 +18,7 @@ in action by following these steps:
 2. Open this in Android Studio.
 3. Run the `examples_media_customminiplayer` configuration.
 4. Open the media frontend.
-5. Select and play a music.
+5. Select and play any media from any media source.
 6. Close the media frontend.
 
 The custom media mini player is now shown and its layout differs from the stock one.

@@ -14,7 +14,7 @@
 [versions]
 # TomTom Digital Cockpit platform.
 # This line is being parsed using a regex. And should not be altered carelessly.
-iviPlatform = "1.0.5401"
+iviPlatform = "1.0.5805"
 
 [libraries]
 # Gradle plugins from the TomTom Digital Cockpit platform & appsuite.
@@ -25,7 +25,6 @@ gradlePluginApiFrameworksFrontend = { module = "com.tomtom.ivi.platform.gradle:a
 gradlePluginApiProductDefaultsCore = { module = "com.tomtom.ivi.product.gradle:api_productdefaults_core", version.ref = "iviPlatform" }
 gradlePluginApiToolsSigningConfig = { module = "com.tomtom.ivi.platform.gradle:api_tools_signingconfig", version.ref = "iviPlatform" }
 gradlePluginApiToolsEmulators = { module = "com.tomtom.ivi.platform.gradle:api_tools_emulators", version.ref = "iviPlatform" }
-gradlePluginApiToolsVersionIvi = { module = "com.tomtom.ivi.platform.gradle:api_tools_version", version.ref = "iviPlatform" }
 
 # TomTom Digital Cockpit platform components.
 iviPlatformAlexaApiCommonUtil = { module = "com.tomtom.ivi.platform:platform_alexa_api_common_util", version.ref = "iviPlatform" }
@@ -43,6 +42,7 @@ iviPlatformFrameworkApiProductDebugPermissions = { module = "com.tomtom.ivi.plat
 iviPlatformFrameworkApiProductDefaultActivity = { module = "com.tomtom.ivi.platform:platform_framework_api_product_defaultactivity", version.ref = "iviPlatform" }
 iviPlatformFrameworkApiProductDefaultApplication = { module = "com.tomtom.ivi.platform:platform_framework_api_product_defaultapplication", version.ref = "iviPlatform" }
 iviPlatformFrameworkApiTestingIpc = { module = "com.tomtom.ivi.platform:platform_framework_api_testing_ipc", version.ref = "iviPlatform" }
+iviPlatformFrontendApiCommonAdaptiveness = { module = "com.tomtom.ivi.platform:platform_frontend_api_common_adaptiveness", version.ref = "iviPlatform" }
 iviPlatformFrontendApiCommonFrontend = { module = "com.tomtom.ivi.platform:platform_frontend_api_common_frontend", version.ref = "iviPlatform" }
 iviPlatformFrontendApiCommonUicontrols = { module = "com.tomtom.ivi.platform:platform_frontend_api_common_uicontrols", version.ref = "iviPlatform" }
 iviPlatformFrontendApiTemplateCompactProcessPanel = { module = "com.tomtom.ivi.platform:platform_frontend_api_template_compactprocesspanel", version.ref = "iviPlatform" }
@@ -61,7 +61,6 @@ iviPlatformTelecomApiCommonUtils = { module = "com.tomtom.ivi.platform:platform_
 iviPlatformTelecomApiServiceTelecom = { module = "com.tomtom.ivi.platform:platform_telecom_api_service_telecom", version.ref = "iviPlatform" }
 iviPlatformThemingApiCommonAttributes = { module = "com.tomtom.ivi.platform:platform_theming_api_common_attributes", version.ref = "iviPlatform" }
 iviPlatformToolsApiTestingFunctional = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_functional", version.ref = "iviPlatform" }
-iviPlatformToolsApiTestingUnit = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_unit", version.ref = "iviPlatform" }
 iviPlatformVpaApiServiceVpaadaptation = { module = "com.tomtom.ivi.platform:platform_vpa_api_service_vpaadaptation", version.ref = "iviPlatform" }
 
 # TomTom Digital Cockpit appsuite components.
